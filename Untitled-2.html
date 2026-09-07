@@ -52,6 +52,14 @@ h1 span{color:var(--orange)}
 .pills{display:flex;gap:10px;flex-wrap:wrap}
 .pill{padding:8px 14px;border:1px solid #eccfc2;background:rgba(255,255,255,.72);border-radius:99px;color:#594d48;font-size:14px}
 .hero-card{background:linear-gradient(145deg,#ffe0d1,#fff9f5);border:1px solid #edcfc1;border-radius:36px;padding:26px;box-shadow:var(--shadow);transform:rotate(1.5deg)}
+.profile-photo-wrap{width:100%;aspect-ratio:1/1;max-width:430px;margin:auto;border-radius:50%;overflow:hidden;background:#fff;border:8px solid rgba(255,255,255,.85);box-shadow:0 20px 40px rgba(31,20,15,.2);cursor:zoom-in}
+.profile-photo{width:100%;height:100%;object-fit:cover;object-position:center;display:block;transition:transform .3s ease}
+.profile-photo-wrap:hover .profile-photo{transform:scale(1.02)}
+.photo-modal{display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.86);align-items:center;justify-content:center;padding:30px;cursor:zoom-out}
+.photo-modal.open{display:flex}
+.photo-modal img{max-width:92vw;max-height:92vh;width:auto;height:auto;object-fit:contain;border-radius:18px;box-shadow:0 25px 70px rgba(0,0,0,.45)}
+.photo-modal-close{position:absolute;top:20px;right:28px;width:46px;height:46px;border:0;border-radius:50%;background:rgba(255,255,255,.12);color:#fff;font-size:30px;line-height:1;cursor:pointer}
+.photo-modal-close:hover{background:rgba(255,255,255,.22)}
 .code-window{background:#201b19;border-radius:23px;padding:20px;color:#fce9df;min-height:350px;box-shadow:0 20px 40px rgba(31,20,15,.2)}
 .dots{display:flex;gap:7px;margin-bottom:22px}.dots i{width:9px;height:9px;border-radius:50%;background:#8d7369}
 .code-line{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:13px;margin:9px 0;color:#f3cbbd}
@@ -180,6 +188,11 @@ footer{padding:35px 0;color:#89756e;font-size:13px;border-top:1px solid var(--li
  </div>
 </nav>
 
+<div class="photo-modal" id="photoModal" aria-hidden="true">
+ <button class="photo-modal-close" id="photoModalClose" aria-label="Close profile photo">&times;</button>
+ <img src="assets/profile-photo.png" alt="Jeela Rahul profile photo enlarged">
+</div>
+
 <main>
 <section class="hero" id="home">
  <div class="container hero-grid">
@@ -195,16 +208,9 @@ footer{padding:35px 0;color:#89756e;font-size:13px;border-top:1px solid var(--li
    <div class="pills"><span class="pill">Software Developer</span><span class="pill">ML Enthusiast</span><span class="pill">Backend Enthusiast</span><span class="pill">DSA</span></div>
   </div>
   <div class="hero-card">
-   <div class="code-window">
-    <div class="dots"><i></i><i></i><i></i></div>
-    <div class="code-line"><small>01</small> <b>class</b> Rahul:</div>
-    <div class="code-line"><small>02</small> &nbsp;&nbsp;role = <em>"Software Developer"</em></div>
-    <div class="code-line"><small>03</small> &nbsp;&nbsp;focus = [<em>"Backend"</em>, <em>"ML"</em>]</div>
-    <div class="code-line"><small>04</small> &nbsp;&nbsp;skills = [<em>"C++"</em>, <em>"Java"</em>]</div>
-    <div class="code-line"><small>05</small> &nbsp;&nbsp;skills += [<em>"Python"</em>, <em>"JavaScript"</em>]</div>
-    <div class="code-line"><small>06</small> &nbsp;&nbsp;build(<em>"useful software"</em>)</div>
-    <div class="code-line"><small>07</small> &nbsp;&nbsp;learn(<em>"every day"</em>)</div>
-    <div class="mini-stat"><span>DSA • ML • Backend</span><span>● Available</span></div>
+   <div class="profile-photo-wrap" id="profilePhotoBtn" role="button" tabindex="0" aria-label="Open profile photo">
+     <img class="profile-photo" src="assets/profile-photo.png" alt="Jeela Rahul profile photo">
+    </div>
    </div>
   </div>
  </div>
@@ -283,7 +289,7 @@ footer{padding:35px 0;color:#89756e;font-size:13px;border-top:1px solid var(--li
 <span class="tech-icon generic" title="OCR" aria-label="OCR"><i class="fa-solid fa-file-lines"></i></span>
 <span class="tech-icon mysql" title="MySQL" aria-label="MySQL"><i class="devicon-mysql-plain colored"></i></span>
 <span class="tech-icon" title="JavaScript" aria-label="JavaScript"><i class="devicon-javascript-plain colored"></i></span>
-</div><div class="project-footer"><span>AI + CV project</span><a class="project-link" href="https://github.com/rahulyadavjeela/AI-Document-Verification-System-.git" target="_blank" rel="noopener">Source Code ↗</a></div></div></article>
+</div><div class="project-footer"><span>AI + CV project</span><a class="project-link" href="https://github.com/rahulyadavjeela/AI-Powered-Document-Verification-System.git" target="_blank" rel="noopener">Source Code ↗</a></div></div></article>
    <article class="project"><div class="project-visual"><span class="visual-label">GAME • JAVASCRIPT</span><svg class="project-image project-art" viewBox="0 0 900 500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Tic Tac Toe preview"><defs><linearGradient id="tt" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#251b4b"/><stop offset="1" stop-color="#17112f"/></linearGradient></defs><rect width="900" height="500" fill="url(#tt)"/><text x="450" y="72" text-anchor="middle" fill="white" font-size="35" font-family="Arial" font-weight="800">TIC TAC TOE</text><text x="450" y="102" text-anchor="middle" fill="#a8a1c9" font-size="14" font-family="Arial">Player X vs Player O</text><rect x="285" y="130" width="330" height="330" rx="22" fill="#17142a" stroke="#544b82" stroke-width="3"/><g stroke="#7a70a7" stroke-width="5"><line x1="395" y1="160" x2="395" y2="430"/><line x1="505" y1="160" x2="505" y2="430"/><line x1="315" y1="270" x2="585" y2="270"/><line x1="315" y1="380" x2="585" y2="380"/></g><g fill="none" stroke="#ef5d88" stroke-width="9"><line x1="340" y1="185" x2="370" y2="215"/><line x1="370" y1="185" x2="340" y2="215"/><line x1="450" y1="295" x2="480" y2="325"/><line x1="480" y1="295" x2="450" y2="325"/></g><g fill="none" stroke="#62d6ee" stroke-width="8"><circle cx="450" cy="215" r="26"/><circle cx="560" cy="325" r="26"/><circle cx="340" cy="325" r="26"/></g><rect x="55" y="170" width="170" height="65" rx="14" fill="#30285a"/><text x="80" y="198" fill="#aaa2c9" font-size="12" font-family="Arial">CURRENT TURN</text><text x="80" y="220" fill="#62d6ee" font-size="21" font-family="Arial" font-weight="800">PLAYER X</text><rect x="675" y="170" width="170" height="65" rx="14" fill="#30285a"/><text x="700" y="198" fill="#aaa2c9" font-size="12" font-family="Arial">SCORE</text><text x="700" y="220" fill="white" font-size="21" font-family="Arial" font-weight="800">X 2 — 1 O</text></svg></div><div class="project-body"><div class="project-num">03 / INTERACTIVE GAME</div><h3>Tic Tac Toe</h3><p>An interactive two-player Tic Tac Toe game with a clean interface, turn handling, win detection and reset functionality.</p><div class="tech" aria-label="Project technologies">
 <span class="tech-icon" title="HTML5" aria-label="HTML5"><i class="devicon-html5-plain colored"></i></span>
 <span class="tech-icon" title="CSS3" aria-label="CSS3"><i class="devicon-css3-plain colored"></i></span>
@@ -363,6 +369,40 @@ const menuBtn=document.getElementById('menuBtn'), nav=document.getElementById('n
 menuBtn.addEventListener('click',()=>nav.classList.toggle('open'));
 document.querySelectorAll('.navlinks a').forEach(a=>a.addEventListener('click',()=>nav.classList.remove('open')));
 document.getElementById('year').textContent=new Date().getFullYear();
+
+const profilePhotoBtn=document.getElementById('profilePhotoBtn');
+const photoModal=document.getElementById('photoModal');
+const photoModalClose=document.getElementById('photoModalClose');
+
+function openPhotoModal(){
+  photoModal.classList.add('open');
+  photoModal.setAttribute('aria-hidden','false');
+  document.body.style.overflow='hidden';
+}
+
+function closePhotoModal(){
+  photoModal.classList.remove('open');
+  photoModal.setAttribute('aria-hidden','true');
+  document.body.style.overflow='';
+}
+
+profilePhotoBtn.addEventListener('click',openPhotoModal);
+profilePhotoBtn.addEventListener('keydown',e=>{
+  if(e.key==='Enter' || e.key===' ') {
+    e.preventDefault();
+    openPhotoModal();
+  }
+});
+photoModalClose.addEventListener('click',e=>{
+  e.stopPropagation();
+  closePhotoModal();
+});
+photoModal.addEventListener('click',e=>{
+  if(e.target===photoModal) closePhotoModal();
+});
+document.addEventListener('keydown',e=>{
+  if(e.key==='Escape') closePhotoModal();
+});
 
 document.getElementById('contactForm').addEventListener('submit',e=>{
  e.preventDefault();
